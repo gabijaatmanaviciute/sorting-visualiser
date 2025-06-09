@@ -1,0 +1,135 @@
+:root {
+  /* column width will be overwritten by JS */
+  --column-width: 0;
+  --color-purple-dark: rgb(53, 18, 98);
+  --color-purple-light: rgb(146, 118, 182);
+  --color-grey: rgb(137, 137, 137);
+}
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h3 {
+  margin: 0;
+}
+
+.sorting-selection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 16px;
+}
+
+.radio-input {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.radio-box {
+  margin: 4px;
+}
+
+.canvas-container {
+  border: 1px solid black;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  padding: 32px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.canvas-subcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.column-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.column-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  max-width: 400px;
+  width: 100%;
+  height: 120px;
+}
+
+.column {
+  width: var(--column-width);
+  background-color: var(--color-purple-light);
+  border: 1px solid black;
+}
+
+.button {
+  border: none;
+  padding: 16px 32px;
+  background-color: var(--color-purple-dark);
+  border-radius: 4px;
+  color: white;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+  background-color: var(--color-purple-light);
+}
+
+.button:active {
+  background-color: var(--color-purple-dark);
+}
+
+.button:disabled {
+  background-color: var(--color-grey);
+}
+
+.breakdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.ranges {
+  display: flex;
+  gap: 36px;
+}
+
+.number-of-elements-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.controls {
+  display: flex;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .sorting-selection {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .canvas-container {
+    max-width: 700px;
+  }
+}

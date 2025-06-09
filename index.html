@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorting Algorithm Visualiser</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" href="./favicon.png" type="image/png" sizes="32x32" />
+    <script type="module" src="./scripts/index.js" defer></script>
+  </head>
+  <body>
+    <div class="page">
+      <h1>Sorting Algorithm Visualiser</h1>
+      <div id="canvas" class="canvas-container">
+        <div class="canvas-subcontainer">
+          <h3>Initial Order:</h3>
+          <div id="initialOrder" class="column-wrapper"></div>
+        </div>
+        <div class="canvas-subcontainer">
+          <h3>Sorted Order:</h3>
+          <div id="sortedOrder" class="column-wrapper"></div>
+        </div>
+        <div class="breakdown">
+          <div class="ranges">
+            <div class="number-of-elements-wrapper">
+              <input
+                id="speedControl"
+                type="range"
+                min="1"
+                max="10"
+                value="5"
+              />
+              <div>
+                <label for="speedControl">Speed:</label>
+                <span id="speedControlValue">0</span>
+              </div>
+            </div>
+            <div class="number-of-elements-wrapper">
+              <input
+                type="range"
+                min="5"
+                max="25"
+                value="15"
+                step="5"
+                id="numberOfElementsInput"
+              />
+              <div>
+                <label for="numberOfElementsInput">Number of elements:</label>
+                <span id="numberOfElements">0</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span>Number of operations:</span>
+            <span id="numberOfOperations">0</span>
+          </div>
+        </div>
+        <form class="sorting-selection">
+          <div class="radio-input">
+            <input class="radio-box" type="radio" id="bubbleSort" checked />
+            <label for="bubbleSort"> Bubble Sort </label>
+          </div>
+          <div class="radio-input">
+            <input class="radio-box" type="radio" id="selectionSort" disabled />
+            <label for="selectionSort">Selection Sort</label>
+          </div>
+          <div class="radio-input">
+            <input class="radio-box" type="radio" id="insertionSort" disabled />
+            <label for="insertionSort">Insertion Sort</label>
+          </div>
+          <div class="radio-input">
+            <input class="radio-box" type="radio" id="mergeSort" disabled />
+            <label for="mergeSort">Merge Sort</label>
+          </div>
+          <div class="radio-input">
+            <input class="radio-box" type="radio" id="mergeSort" disabled />
+            <label for="mergeSort">Shell Sort</label>
+          </div>
+          <div class="radio-input">
+            <input class="radio-box" type="radio" id="mergeSort" disabled />
+            <label for="mergeSort">Quick Sort</label>
+          </div>
+          <div class="radio-input">
+            <input class="radio-box" type="radio" id="mergeSort" disabled />
+            <label for="mergeSort">Heap Sort</label>
+          </div>
+          <div class="radio-input">
+            <input class="radio-box" type="radio" id="mergeSort" disabled />
+            <label for="mergeSort">Radix Sort</label>
+          </div>
+        </form>
+        <div class="controls">
+          <button class="button" id="play">Play</button>
+          <button class="button" id="reset">Reset</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
