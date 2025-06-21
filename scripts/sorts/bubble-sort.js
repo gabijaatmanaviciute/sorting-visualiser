@@ -7,32 +7,30 @@ import { wait } from "../helpers.js";
 
 /*
 BUBBLE SORT:
-* Go through each pair of numbers and compare their values;
-* If the second value is smaller than the first one, swap the numbers
-* Move one place to the right
-* Repeat the process
-* Once all the adjacent number pairs have been processed once, do a second iteration with the same logic,
+* We sort the array using multiple passes. 
+* After the first pass, the maximum element goes to end (its correct position). 
+* Same way, after second pass, the second largest element goes to second last position and so on.
+* In every pass, we process only those elements that have already not moved to correct position. 
+* After k passes, the largest k elements must have been moved to the last k positions.
+* In a pass, we consider remaining elements and compare all adjacent and swap if larger element is before a smaller element. 
+* If we keep doing this, we get the largest (among the remaining elements) at its correct position.
 */
-// TODO probably rewrite this with a generator
-export async function bubbleSort(array) {
-  const DELAY = 100 - document.getElementById("speedControl").value * 10;
-
-  console.log("dd", DELAY);
+export async function* initiateBubbleSortGenerator(array) {
+  const speedValue = Number(document.getElementById("speedControl").value);
+  const DELAY = Math.max(10, 100 - speedValue * 10);
   let numberOfOperations = 0;
-  let isDone = false;
   // iteration rounds:
-  for (let i = 0; i < array.length - 1 && !isDone; i++) {
-    let swappedAtLeastOnce = false; // reset the swap tracker
+  for (let i = 0; i < array.length - 1; i++) {
+    let swappedAtLeastOnce = false;
     // pairwise comparisons:
-    for (let j = 0; j < array.length - 1 && !isDone; j++) {
+    for (let j = 0; j < array.length - i - 1; j++) {
       numberOfOperations++;
       const firstNumber = array[j];
       const secondNumber = array[j + 1];
 
-      /** Render logic */
+      /** Render logic - HIGHLIGHT COLUMNS */
       const sortedArrayNode = document.getElementById("sortedOrder");
-      const childNodes = sortedArrayNode.children;
-      const childNodesArray = Array.from(childNodes);
+      const childNodesArray = Array.from(sortedArrayNode.children);
       childNodesArray[j].firstChild.style.backgroundColor = "papayawhip";
       childNodesArray[j + 1].firstChild.style.backgroundColor = "papayawhip";
       await wait(DELAY);
@@ -44,18 +42,19 @@ export async function bubbleSort(array) {
         array[j + 1] = firstNumber;
         swappedAtLeastOnce = true;
       }
-      /** Render logic */
+      /** Render logic - SWAP COLUMNS */
       cleanupPreviousSort();
       renderArray(array, "sortedOrder");
 
       await wait(DELAY);
       /** Render logic */
+      yield {
+        array: [...array],
+        comparing: [j, j + 1],
+        swapped: firstNumber > secondNumber,
+        operationCount: numberOfOperations,
+      };
     }
-
-    if (!swappedAtLeastOnce) {
-      isDone = true;
-    }
+    if (!swappedAtLeastOnce) break;
   }
-
-  return array;
 }
